@@ -231,6 +231,10 @@
       .item .row { display: flex; align-items: center; justify-content: space-between; margin-top: 0.6rem; }
       .price { font-family: var(--serif); font-size: 1.5rem; color: var(--gold-bright); }
       .price small { font-size: 0.78rem; color: var(--muted); font-family: var(--sans); letter-spacing: 0.06em; }
+      .price .was { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); text-decoration: line-through; margin-left: 0.4rem; }
+      .item .tag .sale { color: var(--gold-bright); }
+      .empty-note { grid-column: 1 / -1; border: 1px dashed var(--line); color: var(--muted); text-align: center; padding: 2.2rem 1.4rem; margin: 0; font-size: 0.95rem; }
+      .empty-note a { color: var(--gold-bright); }
       .add-btn {
         font-family: var(--sans); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
         background: transparent; border: 1px solid var(--gold); color: var(--gold-bright);
@@ -791,21 +795,24 @@
         CATS.forEach(function (c) { CAT_LABEL[c.id] = c.label; });
 
         var MENU = [
-          { id: "sunset-og", cat: "flower", name: "Sunset OG", notes: "The house indica. Pine, gas and a slow Valley sunset of a finish.", meta: ["Indica", "28% THC", "3.5g"], price: 40, unit: "/ eighth" },
-          { id: "valley-kush", cat: "flower", name: "Valley Kush", notes: "Classic OG genetics, cured slow. Earthy lemon over heavy calm.", meta: ["Indica-dominant", "26% THC", "3.5g"], price: 35, unit: "/ eighth" },
-          { id: "blue-dream", cat: "flower", name: "Blue Dream", notes: "California's everyday sativa-lean. Bright berry, clear head, no jitters.", meta: ["Sativa-dominant", "24% THC", "3.5g"], price: 38, unit: "/ eighth" },
-          { id: "wedding-cake", cat: "flower", name: "Wedding Cake", notes: "Dense, frosty, dessert-sweet. The connoisseur shelf's most-asked name.", meta: ["Hybrid", "27% THC", "3.5g"], price: 45, unit: "/ eighth" },
-          { id: "gelato-41", cat: "flower", name: "Gelato #41", notes: "Purple, gassy and smooth. Small-batch indoor, gone most weekends.", meta: ["Hybrid", "29% THC", "3.5g"], price: 48, unit: "/ eighth" },
-          { id: "classic-single", cat: "prerolls", name: "Classic Single 1g", notes: "Whole flower only — never shake. Hand-packed, slow even burn.", meta: ["Hybrid", "1g"], price: 12, unit: "/ joint" },
-          { id: "infused-fire", cat: "prerolls", name: "Infused Fire Stick", notes: "Flower + live resin + kief. For experienced smokers only.", meta: ["Indica", "42% THC", "1.2g"], price: 18, unit: "/ joint" },
-          { id: "gold-cart", cat: "vapes", name: "Gold Reserve Cart", notes: "Full-gram live-resin cartridge. Clean oil, true-to-strain flavor.", meta: ["Hybrid", "85% THC", "1g"], price: 38, unit: "/ cart" },
-          { id: "night-dispo", cat: "vapes", name: "Night Shift Disposable", notes: "Rechargeable 1g disposable in a sleepy indica blend. Pocket-friendly.", meta: ["Indica", "88% THC", "1g"], price: 32, unit: "/ pen" },
-          { id: "peach-rings", cat: "edibles", name: "Peach Rings 100mg", notes: "Ten 10mg rings. Sweet, consistent dosing, about an hour to full effect.", meta: ["Hybrid", "100mg THC", "10 pc"], price: 18, unit: "/ pack" },
-          { id: "sleep-chews", cat: "edibles", name: "Midnight Chews 1:1", notes: "Equal THC and CBN for the wind-down. Berry flavored, sugar-dusted.", meta: ["Indica", "100mg", "10 pc"], price: 20, unit: "/ pack" },
-          { id: "rosin", cat: "concentrates", name: "Cold-Cure Live Rosin", notes: "Solventless, single-source, pressed in small batches. Terps first.", meta: ["Hybrid", "72% THC", "1g"], price: 55, unit: "/ gram" },
-          { id: "diamonds", cat: "concentrates", name: "Liquid Diamonds", notes: "High-potency THCa diamonds in live-resin sauce. Handle with respect.", meta: ["Sativa", "94% THC", "1g"], price: 42, unit: "/ gram" },
-          { id: "balance-tincture", cat: "cbd", name: "Balance Tincture 1:1", notes: "Equal parts CBD and THC in MCT oil. Measured dropper, gentle onset.", meta: ["1:1 CBD:THC", "30ml"], price: 35, unit: "/ bottle" },
-          { id: "relief-balm", cat: "cbd", name: "Relief Balm", notes: "Topical comfort for knees, backs and desk shoulders. Non-psychoactive feel.", meta: ["CBD-rich", "50ml"], price: 28, unit: "/ jar" }
+          { id: "cbx-lorange", cat: "flower", name: "CBX L'Orange Premium Flower", notes: "Cannabiotix's premium cut — bright citrus off the top shelf, cured the CBX way.", meta: ["Premium flower", "1/8 oz"], price: 42, was: 60, unit: "/ eighth" },
+          { id: "stiiizy-skywalker", cat: "flower", name: "STIIIZY Skywalker OG 40's Infused Flower", notes: "STIIIZY's 40's line — Skywalker OG flower infused for extra weight in every jar.", meta: ["Infused", "1/4 oz"], price: 39, was: 55, unit: "/ quarter" },
+          { id: "alien-permanent-shade", cat: "flower", name: "Alien Labs Permanent Shade", notes: "Alien Labs indoor — exotic genetics, small-batch grown, gone fast most weeks.", meta: ["Indoor flower", "3.5g"], price: 62, unit: "/ eighth" },
+          { id: "sparkiez-guava", cat: "prerolls", name: "Sparkiez Guava Pre-Roll Pack", notes: "A full half-ounce of Sparkiez pre-rolls in Guava — the week's smokes, sorted.", meta: ["14g pack", "1/2 oz"], price: 47, unit: "/ pack" },
+          { id: "alien-glitch", cat: "prerolls", name: "Alien Labs Glitch Pre-Roll", notes: "Alien Labs flower rolled into a single gram — the exotic shelf in joint form.", meta: ["1g"], price: 17, unit: "/ joint" },
+          { id: "wcc-all-day", cat: "prerolls", name: "West Coast Cure All Day Pack", notes: "Three top-shelf 1g CUREjoints in one variety pack — a tour of the WCC shelf.", meta: ["3 × 1g", "Variety pack"], price: 24, was: 37, unit: "/ pack" },
+          { id: "lolo-coco-colada", cat: "prerolls", name: "lolo Coco Colada Classic Joint", notes: "A coconut-piña classic joint from lolo — an easy ten-dollar smoke.", meta: ["1g"], price: 10, unit: "/ joint" },
+          { id: "plugplay-peach-ringz", cat: "vapes", name: "PLUGPLAY Peach Ringz PLUG Pod", notes: "PLUGPLAY Exotics pod in Peach Ringz — candy-sweet, made for the PLUG battery.", meta: ["Pod", "1g"], price: 45, unit: "/ pod" },
+          { id: "coldfire-gumballz", cat: "vapes", name: "COLDFIRE Gumballz Juice Cart", notes: "COLDFIRE x Flight Path — a juice cured resin cartridge in Gumballz.", meta: ["Cured resin", "1g"], price: 50, unit: "/ cart" },
+          { id: "wcc-gas-og", cat: "vapes", name: "West Coast Cure Gas OG CUREpen", notes: "West Coast Cure's Gas OG in a full-gram CUREpen cartridge — heavy and gassy.", meta: ["Cartridge", "1g"], price: 21, was: 32, unit: "/ cart" },
+          { id: "dime-wedding-cake", cat: "vapes", name: "Dime Industries Wedding Cake Device", notes: "Dime's 1g all-in-one device in Wedding Cake — charged and ready out of the box.", meta: ["All-in-one", "1g"], price: 40, unit: "/ device" },
+          { id: "wyld-huckleberry", cat: "edibles", name: "WYLD Huckleberry Hybrid Gummies", notes: "WYLD's hybrid-enhanced huckleberry gummies — ten pieces at 10mg each.", meta: ["100mg THC", "10 pc"], price: 18, unit: "/ pack" },
+          { id: "lost-farm-raspberry", cat: "edibles", name: "Lost Farm Raspberry Wedding Cake Gummies", notes: "Lost Farm live resin gummies — raspberry over a Wedding Cake base.", meta: ["Live resin", "100mg", "10 pc"], price: 25, unit: "/ pack" },
+          { id: "stiiizy-fruit-punch", cat: "edibles", name: "STIIIZY Fruit Punch Splash Edibles", notes: "STIIIZY's original 100mg edibles in Fruit Punch Splash.", meta: ["100mg THC"], price: 11, was: 16, unit: "/ pack" },
+          { id: "highatus-chron-bons", cat: "edibles", name: "Highatus Chron Bons Chocolates", notes: "Caramel & sea salt chocolate bonbons from Highatus — ten 10mg pieces.", meta: ["Chocolate", "100mg", "10 pc"], price: 18, was: 26, unit: "/ pack" },
+          { id: "710-faux-fauna", cat: "concentrates", name: "710 Labs Faux Fauna F2 #5 Live Rosin", notes: "710 Labs live rosin badder — solventless and small-batch, straight off the top shelf.", meta: ["Live rosin", "Badder", "1g"], price: 65, unit: "/ gram" },
+          { id: "cbx-cereal-milk", cat: "concentrates", name: "CBX Cereal Milk Live Resin Sugar", notes: "Cannabiotix live resin sugar in Cereal Milk — sweet, crystalline, easy to scoop.", meta: ["Live resin sugar", "1g"], price: 25, was: 36, unit: "/ gram" },
+          { id: "kingpen-gg4", cat: "concentrates", name: "KINGPEN GG4 Live Resin Badder", notes: "KINGPEN live resin badder in GG4 — a generous 1.5g jar of a heavy classic.", meta: ["Live resin", "1.5g"], price: 21, was: 30, unit: "/ jar" }
         ];
 
         /* ---------- Menu render + filters ---------- */
@@ -828,17 +835,22 @@
 
         function renderMenu() {
           gridEl.innerHTML = "";
-          MENU.filter(function (m) { return activeCat === "all" || m.cat === activeCat; })
-            .forEach(function (m) {
+          var list = MENU.filter(function (m) { return activeCat === "all" || m.cat === activeCat; });
+          if (!list.length) {
+            gridEl.innerHTML = '<p class="empty-note">Nothing featured in this category today — the full shelf is on <a href="https://weedmaps.com" target="_blank" rel="noopener">Weedmaps</a> and at the counter in-store.</p>';
+            return;
+          }
+          list.forEach(function (m) {
               var card = document.createElement("article");
               card.className = "item";
               var meta = m.meta.map(function (x) { return "<span>" + x + "</span>"; }).join("");
+              var priceHtml = money(m.price) + (m.was ? ' <s class="was">' + money(m.was) + "</s>" : "") + " <small>" + m.unit + "</small>";
               card.innerHTML =
-                '<p class="tag">' + CAT_LABEL[m.cat] + "</p>" +
+                '<p class="tag">' + CAT_LABEL[m.cat] + (m.was ? ' <span class="sale">· On sale</span>' : "") + "</p>" +
                 "<h3>" + m.name + "</h3>" +
                 '<p class="notes">' + m.notes + "</p>" +
                 '<div class="meta">' + meta + "</div>" +
-                '<div class="row"><span class="price">' + money(m.price) + " <small>" + m.unit + "</small></span>" +
+                '<div class="row"><span class="price">' + priceHtml + "</span>" +
                 '<button class="add-btn" type="button">Add to bag</button></div>';
               card.querySelector(".add-btn").addEventListener("click", function () {
                 addToBag(m.id);
