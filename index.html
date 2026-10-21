@@ -102,6 +102,17 @@
       }
       nav.links a:hover { color: var(--gold-bright); border-bottom-color: var(--gold); }
       @media (max-width: 860px) { nav.links { display: none; } }
+      nav.mobile-links {
+        display: none; gap: 1.5rem;
+        width: min(1240px, 100% - 3rem); margin-inline: auto;
+        padding-top: 0.65rem; padding-bottom: 0.8rem;
+        border-top: 1px solid rgba(198, 161, 91, 0.12);
+        overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+      }
+      nav.mobile-links::-webkit-scrollbar { display: none; }
+      nav.mobile-links a { white-space: nowrap; flex: none; }
+      @media (max-width: 860px) { nav.mobile-links { display: flex; } }
+      @media (max-width: 640px) { nav.mobile-links { width: calc(100% - 2.5rem); } }
       .nav-actions { display: flex; align-items: center; gap: 0.6rem; }
       .btn {
         display: inline-flex; align-items: center; gap: 0.5rem;
@@ -464,7 +475,7 @@
         <h2 id="gateTitle">Are you 21 <em>or older?</em></h2>
         <p id="gateText">You must be 21+ (or a qualified medical patient 18+) to enter this site. Cannabis products are for adults only. Please consume responsibly.</p>
         <div class="gate-actions" id="gateActions">
-          <button class="btn solid" id="gateYes" type="button">I&rsquo;m 21+ · Enter</button>
+          <button class="btn solid" id="gateYes" type="button">I&rsquo;m 21+ Enter</button>
           <button class="btn ghost" id="gateNo" type="button">Not yet</button>
         </div>
       </div>
@@ -501,6 +512,15 @@
           </button>
         </div>
       </div>
+      <nav class="links mobile-links" aria-label="Primary">
+        <a href="#shop">Shop</a>
+        <a href="#menu">Menu</a>
+        <a href="#story">The Shop</a>
+        <a href="#deals">Deals</a>
+        <a href="#visit">Visit</a>
+        <a href="blog.html">Blog</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
     </header>
 
     <main id="top">
